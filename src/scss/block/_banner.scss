@@ -1,0 +1,253 @@
+.banner {
+    background: #15B8A5;
+    border-radius: 0px 0px 48px 48px;
+    position: relative;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    overflow: hidden;
+    &__image {
+        position: absolute;
+        right: -20px;
+        // top: 40px;
+        bottom: 0;
+    }
+    &__title {
+        font-weight: 600;
+        font-size: 64px;
+        line-height: 120%;
+        letter-spacing: -0.02em;
+        color: #FFFFFF;
+        max-width: 750px;
+        width: 100%;
+        margin-bottom: 40px;
+    }
+    &__form {
+        max-width: 500px;
+        width: 100%;
+        background: #73D4C9;
+        border: 1px solid #D1FAE5;
+        border-radius: 32px;
+        padding: 30px;
+        box-sizing: border-box;
+        &-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 13px;
+            p {
+                &:first-of-type {
+                    font-size: 16px;
+                    line-height: 20px;
+                    letter-spacing: -0.03em;
+                    color: #fff;
+                }
+                &:last-of-type {
+                    font-size: 14px;
+                    line-height: 20px;
+                    letter-spacing: -0.03em;
+                    color: #FFFFFF;
+                }
+            }
+        }
+        &-price {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0px;
+            align-items: flex-end;
+            div {
+                color: #fff;
+                font-size: 16px;
+                line-height: 20px;
+                padding-bottom: 5px;
+            }
+            p {
+                font-weight: 700;
+                font-size: 32px;
+                line-height: 40px;
+                letter-spacing: -0.02em;
+                color: #FFFFFF;
+                span {
+                    font-size: 20px;
+                    line-height: 28px;
+                }
+            }
+        }
+        &-input {
+            position: relative;
+            height: 55px;
+            border-radius: 16px;
+            background: #fff;
+            overflow: hidden;
+            svg {
+                position: absolute;
+                top: 50%;
+                transform: translate(0, -50%);
+                left: 12px;
+            }
+            input {
+                font-family: 'Inter', sans-serif;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 55px;
+                letter-spacing: -0.03em;
+                color: #344256;
+                height: 100%;
+                border: none;
+                box-sizing: border-box;
+                width: 100%;
+                padding-left: 44px;
+                padding-right: 130px;
+                &::placeholder {
+                    font-family: 'Inter', sans-serif;
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 55px;
+                    letter-spacing: -0.03em;
+                    color: #94A3B8;
+                }
+            }
+            button {
+                position: absolute;
+                top: 50%;
+                right: 4px;
+                transform: translate(0, -49%);
+                background: #15B8A5;
+                border-radius: 12px;
+                padding: 0;
+                height: 48px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 16px;
+                line-height: 20px;
+                letter-spacing: -0.03em;
+                color: #FFFFFF;
+                width: 120px;
+                border: none;
+            }
+        }
+    }
+}
+@media (max-width: 1380px) {
+    .banner {
+        &__image {
+            right: -100px;
+        }
+    }
+}
+@media (max-width: 1230px) {
+    .banner {
+        &__image {
+            right: -150px;
+            bottom: -70px;
+        }
+    }
+}
+@media (max-width: 1022px) {
+    .banner {
+        border-radius: 0px;
+        padding-bottom: 45px;
+        padding-top: 105px;
+        &__title {
+            font-weight: 600;
+            font-size: 48px;
+            line-height: 120%;
+            letter-spacing: -0.02em;
+            max-width: 470px;
+            position: relative;
+            z-index: 1;
+        }
+        &__form {
+            position: relative;
+            z-index: 1;
+            max-width: 100%;
+            background: #0D6E63;
+        }
+        &__image {
+            bottom: 0;
+        }
+    }
+}
+@media (max-width: 798px) {
+    .banner {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        &__title {
+            font-weight: 600;
+            font-size: 36px;
+            line-height: 120%;
+            letter-spacing: -0.02em;
+            color: #FFFFFF;
+            margin-bottom: 265px;
+        }
+    }
+}
+@media (max-width: 606px) {
+    .banner {
+        &__title {
+            margin-bottom: 440px;
+        }
+        &__image {
+            bottom: 265px;
+            right: 0;
+            max-width: 98%;
+        }
+    }
+}
+@media (max-width: 550px) {
+    .banner {
+        &__title {
+            margin-bottom: 400px
+        }
+    }
+}
+@media (max-width: 475px) {
+    .banner {
+        &__title {
+            margin-bottom: 350px
+        }
+        &__form {
+            padding: 15px;
+            border-radius: 24px;
+        }
+        &__image {
+            bottom: 238px;
+        }
+    }
+}
+@media (max-width: 420px) {
+    .banner {
+        &__title {
+            margin-bottom: 305px
+        }
+    }
+}
+@media (max-width: 375px) {
+    .banner {
+        &__title {
+            margin-bottom: 265px;
+            font-size: 30px;
+        }
+        &__form {
+            &-input {
+                button {
+                    width: 85px;
+                }
+                input {
+                    padding-right: 80px;
+                    padding-left: 30px;
+                }
+                svg {
+                    left: 5px;
+                }
+            }
+            &-price {
+                p {
+                    font-size: 25px;
+                }
+            }
+        }
+    }
+}
