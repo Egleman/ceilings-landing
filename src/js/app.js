@@ -104,17 +104,17 @@ var swiper4 = new Swiper(".swiper-certificates", {
             spaceBetween: 0,
             slidesPerView: 1,
         },
-        475: {
-            spaceBetween: 35,
+        500: {
+            spaceBetween: 15,
             slidesPerView: 2,
         },
-        625: {
-            spaceBetween: 40,
+        798: {
+            spaceBetween: 15,
             slidesPerView: 3,
         },
-        798: {
-            spaceBetween: 35,
-            slidesPerView: 3,
+        1230: {
+            spaceBetween: 15,
+            slidesPerView: 4,
         }
     }
 });
