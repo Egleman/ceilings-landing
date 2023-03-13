@@ -3231,7 +3231,11 @@ export const tabs = () => {
 
 export const showMoreBlocks = () => {
     const priceListButton = document.querySelector('.pricelist__more');
+    const reviewsButton = document.querySelector('.reviews__more');
+    const faqButton = document.querySelector('.faq__more');
     const priceListCards = document.querySelectorAll('.pricelist__card');
+    const reviewsCards = document.querySelectorAll('.reviews__card');
+    const faqCards = document.querySelectorAll('.accordion__item');
     priceListButton.addEventListener('click', () => {
         priceListCards.forEach(card => {
             if (card.classList.contains('hidden')) {
@@ -3239,5 +3243,116 @@ export const showMoreBlocks = () => {
                 priceListButton.style.display = 'none';
             }
         })
+    })
+    reviewsButton.addEventListener('click', () => {
+        reviewsCards.forEach(card => {
+            if (card.classList.contains('hidden')) {
+                card.classList.remove('hidden');
+                reviewsButton.style.display = 'none';
+            }
+        })
+    })
+    faqButton.addEventListener('click', () => {
+        faqCards.forEach(card => {
+            if (card.classList.contains('hidden')) {
+                card.classList.remove('hidden');
+                faqButton.style.display = 'none';
+            }
+        })
+    })
+}
+
+export const calc = () => {
+    const namesCard = document.querySelectorAll('.calc__card-name');
+    const statusBars = document.querySelectorAll('.calc__card-statusbar');
+    const buttonsPanel = document.querySelectorAll('.calc__card-buttons');
+    const squareInputs = document.querySelectorAll('.calc__card-inputs input');
+    const counters = document.querySelectorAll('.calc__card-count');
+    const squareValues = ['', '']
+
+    buttonsPanel.forEach((panel, index) => {
+        const links = panel.querySelectorAll('a');
+        panel.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (e.target.closest('a')) {
+                const btn = e.target.closest('a');
+                links.forEach(link => {
+                    if (link === btn) {
+                        link.classList.add('active');
+                        namesCard[index].classList.add('active');
+                        statusBars[index].classList.add('active');
+                    } else {
+                        if (link.classList.contains('active')) {
+                            link.classList.remove('active');
+                        }
+                    }
+                })
+            }
+        })
+    });
+
+    
+    squareInputs.forEach((input, index) => {
+        input.addEventListener('input', (e) => {
+            squareValues[index] = e.target.value;
+            if (squareValues[0] !== '' && squareValues[1] !== '') {
+                namesCard[2].classList.add('active');
+                statusBars[2].classList.add('active');
+            } else {
+                if (namesCard[2].classList.contains('active')) {
+                    namesCard[2].classList.remove('active');
+                }
+                if (statusBars[2].classList.contains('active')) {
+                    statusBars[2].classList.remove('active');
+                }
+            }
+        })
+    });
+    counters.forEach(panel => {
+        const input = panel.querySelector('input');
+        const links = panel.querySelectorAll('a');
+        let counter = 0;
+        panel.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (e.target.closest('a')) {
+                const btn = e.target.closest('a');
+                links.forEach(link => {
+                    if (link === btn) {
+                        if (link.dataset.count === 'minus') {
+                            if (counter !== 0) {
+                                counter--;
+                                input.value = counter;
+                                namesCard[3].classList.add('active');
+                                statusBars[3].classList.add('active');
+                            }
+                        } else {
+                            counter++;
+                            input.value = counter;
+                            namesCard[3].classList.add('active');
+                            statusBars[3].classList.add('active');
+                        }
+                    }
+                })
+            }
+        })
+    })
+}
+
+export const playVideo = () => {
+    const playLink = document.querySelector('.installation__video > a');
+    const playLink2 = document.querySelector('.production__video > a');
+    const video = document.querySelector('.installation__video > iframe');
+    const video2 = document.querySelector('.production__video > iframe');
+    playLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        playLink.style.display = 'none';
+        video.src = 'https://www.youtube.com/embed/zv0zQCzd4bw?controls=0'
+        video.style.display = 'block';
+    })
+    playLink2.addEventListener('click', (e) => {
+        e.preventDefault();
+        playLink2.style.display = 'none';
+        video2.src = 'https://www.youtube.com/embed/zv0zQCzd4bw?controls=0'
+        video2.style.display = 'block';
     })
 }
