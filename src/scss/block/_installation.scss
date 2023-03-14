@@ -37,7 +37,7 @@
         margin-top: 24px;
         position: relative;
         max-width: max-content;
-        button {
+        a {
             padding: 0;
             border: none;
             display: flex;
@@ -53,6 +53,13 @@
             font-size: 16px;
             line-height: 20px;
             font-family: 'Inter', sans-serif;
+            transition: .3s all;
+            &:hover {
+                background: #119384;
+            }
+            &:active {
+                background: #0D6E63;
+            }
         }
     }
     &__video {

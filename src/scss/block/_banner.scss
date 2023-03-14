@@ -126,6 +126,13 @@
                 color: #FFFFFF;
                 width: 120px;
                 border: none;
+                transition: .3s all;
+                &:hover {
+                    background: #119384;
+                }
+                &:active {
+                    background: #0D6E63;
+                }
             }
         }
     }

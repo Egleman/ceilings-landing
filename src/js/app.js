@@ -10,6 +10,8 @@ flsFunction.showMoreBlocks();
 flsFunction.calc();
 flsFunction.playVideo();
 flsFunction.accordion();
+flsFunction.scrollButtons();
+flsFunction.openModal();
 
 let im = new Inputmask({
     mask: '8 (999) 999-99-99',
@@ -25,6 +27,24 @@ document.querySelectorAll('.masked').forEach(input => {
 
 import Swiper, { FreeMode, Navigation, Scrollbar, Pagination, Autoplay, EffectCreative, Thumbs } from 'swiper';
 
+document.addEventListener('DOMContentLoaded', function() {
+    function hasTouchDevice() {
+      return !!('ontouchstart' in window || navigator.maxTouchPoints);
+    }
+    if (!hasTouchDevice()) {
+      const toUp = document.querySelectorAll('.calc__card-countwr a');
+      toUp.forEach(link => {
+        link.classList.add('hover');
+        link.onmouseenter = function(){
+            link.classList.add('hover');
+          }
+        link.onmouseleave = function() {
+            link.classList.remove('hover');
+        }
+      })
+      
+    }
+  });
 
 var swiper = new Swiper(".about-thumb", {
     modules: [FreeMode],
@@ -73,11 +93,11 @@ var swiper3 = new Swiper(".production-swiper", {
             slidesPerView: 1,
         },
         475: {
-            spaceBetween: 35,
+            spaceBetween: 15,
             slidesPerView: 2,
         },
         625: {
-            spaceBetween: 40,
+            spaceBetween: 15,
             slidesPerView: 3,
         },
         798: {
@@ -117,4 +137,14 @@ var swiper4 = new Swiper(".swiper-certificates", {
             slidesPerView: 4,
         }
     }
+});
+var swiper5 = new Swiper(".modal-swiper", {
+    modules: [Navigation],
+    loop: true,
+    spaceBetween: 0,
+    slidesPerView: 1,
+    navigation: {
+      nextEl: ".slider__next",
+      prevEl: ".slider__prev",
+    },
 });

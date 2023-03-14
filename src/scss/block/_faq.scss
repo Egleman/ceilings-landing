@@ -30,15 +30,13 @@
         position: relative;
         max-width: max-content;
         margin-bottom: 40px;
-        button {
+        a {
             padding: 0;
             border: none;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 15px 20px;
-            // width: 225px;
-            // height: 48px;
             background: #44C6B7;
             border-radius: 12px;
             overflow: hidden;
@@ -46,13 +44,20 @@
             font-size: 16px;
             line-height: 20px;
             font-family: 'Inter', sans-serif;
+            transition: .3s all;
+            &:hover {
+                background: #119384;
+            }
+            &:active {
+                background: #0D6E63;
+            }
         }
     }
     &__callback2 {
         margin-top: 24px;
         margin-bottom: 40px;
         display: none;
-        button {
+        a {
             width: 100%;
             padding: 0;
             border: none;
@@ -74,6 +79,13 @@
             color: #0F172A;
             opacity: 0.7;
             background: #fff;
+            transition: .3s all;
+            &:hover {
+                background: #F1F5F9;
+            }
+            &:active {
+                background: #E1E7EF;
+            }
         }
     }
     &__more {
@@ -91,6 +103,13 @@
         color: #0F172A;
         opacity: 0.7;
         cursor: pointer;
+        transition: .3s all;
+        &:hover {
+            background: #F1F5F9;
+        }
+        &:active {
+            background: #E1E7EF;
+        }
     }
 }
 @media (max-width: 798px) {

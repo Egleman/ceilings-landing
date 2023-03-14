@@ -80,12 +80,19 @@
                 border-radius: 12px;
                 max-width: max-content;
                 margin-left: auto;
+                transition: .3s all;
                 p {
                     align-items: center;
                     color: #fff;
                 }
                 svg {
                     display: none;
+                }
+                &:hover {
+                    background: #119384;
+                }
+                &:active {
+                    background: #0D6E63;
                 }
             }
             &:hover {

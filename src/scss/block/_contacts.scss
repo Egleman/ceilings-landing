@@ -1,0 +1,182 @@
+.contacts {
+    padding: 37px 0px;
+    &__title {
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 40px;
+        letter-spacing: -0.02em;
+        color: #1D283A;
+        margin-bottom: 40px;
+    }
+    &__list {
+        list-style: none;
+        li {
+            margin-bottom: 15px;
+            p {
+                font-size: 16px;
+                line-height: 140%;
+                letter-spacing: -0.03em;
+                color: #334155;
+                span {
+                    font-size: 16px;
+                    line-height: 140%;
+                    letter-spacing: -0.03em;
+                    color: #0F172A;
+                }
+                a {
+                    font-size: 16px;
+                    line-height: 140%;
+                    letter-spacing: -0.03em;
+                    color: #15B8A5;
+                    text-decoration: none;
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+    &__pay {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+        p {
+            font-size: 20px;
+            line-height: 140%;
+            color: #334155;
+        }
+        ul {
+            list-style-type: none;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            li {
+                div {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+    &__buttons {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        list-style-type: none;
+        li {
+            a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                background: #FFFFFF;
+                border: 1px solid #CBD5E1;
+                border-radius: 10px;
+                padding: 15px 0px;
+                transition: .3s all;
+                p {
+                    font-size: 16px;
+                    line-height: 20px;
+                    letter-spacing: -0.03em;
+                    color: #0F172A;
+                    opacity: 0.7;
+                }
+                &:hover {
+                    background: #F1F5F9;
+                }
+            }
+        }
+    }
+    &__address {
+        display: none;
+    }
+    &__phone {
+        display: none;
+    }
+}
+@media (max-width: 798px) {
+    .contacts {
+        &__title {
+            display: none;
+        }
+        &__list {
+            display: none;
+        }
+        &__pay {
+            display: none;
+        }
+        &__buttons {
+            margin-bottom: 55px;
+        }
+        &__address {
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 32px;
+            letter-spacing: -0.01em;
+            color: #1D283A;
+            text-align: center;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            br {
+                display: none;
+            }
+        }
+        &__phone {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            a {
+                font-weight: 700;
+                font-size: 24px;
+                line-height: 32px;
+                letter-spacing: -0.01em;
+                color: #1D283A;
+                text-decoration: none;
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}
+@media (max-width: 625px) {
+    .contacts {
+        &__buttons {
+            grid-template-columns: 1fr;
+            max-width: 430px;
+            width: 100%;
+            margin: 0 auto 50px
+        }
+        &__address {
+            font-size: 18px;
+            line-height: 32px;
+            letter-spacing: -0.01em;
+            color: #1D283A;
+        }
+    }
+}
+@media (max-width: 475px) {
+    .contacts {
+        &__phone {
+            flex-direction: column;
+            gap: 30px;
+        }
+    }
+}
+@media (max-width: 385px) {
+    .contacts {
+        &__address {
+            br {
+                display: initial;
+            }
+        }
+        &__phone {
+            flex-direction: column;
+            gap: 30px;
+        }
+    }
+}

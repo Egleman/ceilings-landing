@@ -1,5 +1,6 @@
 @import './components/container';
 @import './components/accordion';
+@import './components/modal';
 
 @import './block/header';
 @import './block/banner';
@@ -15,6 +16,11 @@
 @import './block/faq';
 @import './block/certificates';
 @import './block/callback';
+@import './block/want';
+@import './block/contacts';
+@import './block/map';
+@import './block/navbar';
+@import './block/footer';
 
 @import '../../node_modules/swiper/swiper';
 @import '../../node_modules//nouislider/dist/nouislider.css'

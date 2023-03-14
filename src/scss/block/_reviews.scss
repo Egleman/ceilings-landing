@@ -129,6 +129,13 @@
         color: #0F172A;
         opacity: 0.7;
         cursor: pointer;
+        transition: .3s all;
+        &:hover {
+            background: #F1F5F9;
+        }
+        &:active {
+            background: #E1E7EF;
+        }
     }
 }
 @media (max-width: 1230px) {
@@ -185,6 +192,9 @@
         &__grid {
             grid-template-columns: 1fr;
             column-gap: 0;
+            max-width: 430px;
+            width: 100%;
+            margin: 0 auto;
         }
         &__card {
             &-image {

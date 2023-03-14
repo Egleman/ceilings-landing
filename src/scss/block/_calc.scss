@@ -73,6 +73,11 @@
                     border: 1px solid #65758B;
                     border-radius: 12px;
                     transition: .3s all;
+                    &:hover {
+                        background: #15B8A5;
+                        border: 1px solid #44C6B7;
+                        color: #fff; 
+                    }
                 }
                 .active {
                     background: #15B8A5;
@@ -158,9 +163,31 @@
                     border-radius: 12px;
                     width: 50px;
                     height: 40px;
-                    &:last-of-type {
-                        background: #15B8A5;
-                        border: 1px solid #15B8A5;
+                    transition: .3s all;
+                    svg {
+                        transition: .3s all;
+                    }
+                    
+                    
+                }
+                a.hover {
+                    &:hover {
+                        background: #119384;
+                        svg {
+                            path {
+                                fill: #fff
+                            }
+                        }
+                    }
+                }
+                a.active {
+                    &:active {
+                        background: #0D6E63;
+                        svg {
+                            path {
+                                fill: #fff
+                            }
+                        }
                     }
                 }
                 input {
@@ -251,7 +278,7 @@
                 position: absolute;
                 top: 50%;
                 right: 4px;
-                transform: translate(0, -51%);
+                transform: translate(0, -49%);
                 background: #15B8A5;
                 border-radius: 12px;
                 padding: 0;
@@ -261,6 +288,7 @@
                 justify-content: center;
                 width: 120px;
                 border: none;
+                transition: .3s all;
                 p {
                     font-size: 16px;
                     line-height: 20px;
@@ -270,6 +298,17 @@
                 svg {
                     display: none;
                 }
+                &:hover {
+                    background: #119384;
+                }
+                &:active {
+                    background: #0D6E63;
+                }
+            }
+            button.disabled {
+                background: #15B8A5;
+                opacity: 0.3;
+                pointer-events: none;
             }
         }
     }
@@ -311,6 +350,20 @@
                 display: flex;
                 gap: 145px;
             }
+            // &-count {
+            //     div {
+            //         a {
+            //             &:hover {
+            //                 background: #FFFFFF;
+            //                 svg {
+            //                     path {
+            //                         fill: #0F172A;
+            //                     }
+            //                 }
+            //             }
+            //         }
+            //     }
+            // }
         }
         &__form {
             flex-direction: column;

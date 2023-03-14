@@ -110,6 +110,13 @@
             padding: 6px 10px;
             max-width: max-content;
             margin-top: 15px;
+            transition: .3s all;
+            &:hover {
+                background: #F1F5F9;
+            }
+            &:active {
+                background: #E1E7EF;
+            }
         }
     }
     &__more {
@@ -159,6 +166,9 @@
             grid-template-columns: 1fr;
             column-gap: 0px;
             row-gap: 12px;
+            max-width: 430px;
+            width: 100%;
+            margin: 0 auto;
         }
         &__card {
             &-price {

@@ -2,7 +2,26 @@
 import clickOutside from 'click-outside';
 import noUiSlider from 'nouislider';
 
+function animate({timing, draw, duration}) {
 
+    let start = performance.now();
+  
+    requestAnimationFrame(function animate(time) {
+      // timeFraction изменяется от 0 до 1
+      let timeFraction = (time - start) / duration;
+      if (timeFraction > 1) timeFraction = 1;
+  
+      // вычисление текущего состояния анимации
+      let progress = timing(timeFraction);
+  
+      draw(progress); // отрисовать её
+  
+      if (timeFraction < 1) {
+        requestAnimationFrame(animate);
+      }
+  
+    });
+  }
 
 export const isWebp = () => {
     function testWebP(callback) {
@@ -23,6 +42,7 @@ export const isWebp = () => {
         }
     });
 }
+
 export const calcWidthScroll = () => {
     let div = document.createElement('div');
 
@@ -119,6 +139,7 @@ export const accordion = () => {
         alwaysOpen: false
       });
 }
+
 export const mask = () => {
     !function(e, t) {
         if ("object" == typeof exports && "object" == typeof module) module.exports = t(); else if ("function" == typeof define && define.amd) define([], t); else {
@@ -3169,13 +3190,29 @@ export const openHeaderCallback = () => {
     document.querySelector('.header__callback').addEventListener('click', () => {
         document.querySelector('.header__callback-clue').style.display = 'block';
     })
-    document.querySelector('.header__smallnavbar').addEventListener('click', () => {
-        document.querySelector('.header__smallnavbar').classList.toggle('active');
-        document.querySelector('.header__smallnavbar-clue').classList.toggle('active');
-    })
+    
     clickOutside(document.querySelector('.header__callback'), function (e) {
         document.querySelector('.header__callback-clue').style.display = 'none';
     });
+
+
+    document.querySelector('.header__smallnavbar').addEventListener('click', () => {
+        document.querySelector('.header__smallnavbar').classList.toggle('visible');
+        document.querySelector('.header__smallnavbar-clue').classList.toggle('visible');
+        animate({
+            duration: 10,
+            timing(timeFraction) {
+              return timeFraction;
+            },
+            draw(progress) {
+                if (progress === 1) {
+                    document.querySelector('.header__smallnavbar').classList.toggle('active');
+                    document.querySelector('.header__smallnavbar-clue').classList.toggle('active');
+                }
+            }
+        });
+    })
+
     clickOutside(document.querySelector('.header__smallnavbar'), function (e) {
         if (document.querySelector('.header__smallnavbar-clue').classList.contains('active')) {
             document.querySelector('.header__smallnavbar-clue').classList.remove('active');
@@ -3183,6 +3220,22 @@ export const openHeaderCallback = () => {
         if (document.querySelector('.header__smallnavbar').classList.contains('active')) {
             document.querySelector('.header__smallnavbar').classList.remove('active');
         }
+        animate({
+            duration: 10,
+            timing(timeFraction) {
+              return timeFraction;
+            },
+            draw(progress) {
+                if (progress === 1) {
+                    if (document.querySelector('.header__smallnavbar-clue').classList.contains('visible')) {
+                        document.querySelector('.header__smallnavbar-clue').classList.remove('visible');
+                    }
+                    if (document.querySelector('.header__smallnavbar').classList.contains('visible')) {
+                        document.querySelector('.header__smallnavbar').classList.remove('visible');
+                    }
+                }
+            }
+        });
     });
 }
 
@@ -3206,7 +3259,7 @@ export const rangeSlider = () => {
 
 export const tabs = () => {
     const tabsLink = document.querySelectorAll('.ceilings__tabs > ul li');
-    const tabsList = document.querySelectorAll('.ceilings__grid');
+    const tabsList = document.querySelectorAll('.ceilings__tab');
     const tabPanel = document.querySelector('.ceilings__tabs');
     tabPanel.addEventListener('click', (e) => {
         e.preventDefault();
@@ -3236,6 +3289,10 @@ export const showMoreBlocks = () => {
     const priceListCards = document.querySelectorAll('.pricelist__card');
     const reviewsCards = document.querySelectorAll('.reviews__card');
     const faqCards = document.querySelectorAll('.accordion__item');
+
+    const tabShowMoreButtons = document.querySelectorAll('.ceilings__more');
+    const tabGrids = document.querySelectorAll('.ceilings__grid');
+
     priceListButton.addEventListener('click', () => {
         priceListCards.forEach(card => {
             if (card.classList.contains('hidden')) {
@@ -3243,7 +3300,7 @@ export const showMoreBlocks = () => {
                 priceListButton.style.display = 'none';
             }
         })
-    })
+    });
     reviewsButton.addEventListener('click', () => {
         reviewsCards.forEach(card => {
             if (card.classList.contains('hidden')) {
@@ -3251,13 +3308,25 @@ export const showMoreBlocks = () => {
                 reviewsButton.style.display = 'none';
             }
         })
-    })
+    });
     faqButton.addEventListener('click', () => {
         faqCards.forEach(card => {
             if (card.classList.contains('hidden')) {
                 card.classList.remove('hidden');
                 faqButton.style.display = 'none';
             }
+        })
+    });
+
+    tabShowMoreButtons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+            button.style.display = 'none';
+            const cards = tabGrids[index].querySelectorAll('.ceilings__card');
+            cards.forEach(card => {
+                if (card.classList.contains('hidden')) {
+                    card.classList.remove('hidden');
+                }
+            })
         })
     })
 }
@@ -3268,7 +3337,14 @@ export const calc = () => {
     const buttonsPanel = document.querySelectorAll('.calc__card-buttons');
     const squareInputs = document.querySelectorAll('.calc__card-inputs input');
     const counters = document.querySelectorAll('.calc__card-count');
-    const squareValues = ['', '']
+    const squareValues = ['', ''];
+
+    const body = {
+        texture: '',
+        manufacturer: '',
+        room: '',
+        lighting: ''
+    }
 
     buttonsPanel.forEach((panel, index) => {
         const links = panel.querySelectorAll('a');
@@ -3279,8 +3355,17 @@ export const calc = () => {
                 links.forEach(link => {
                     if (link === btn) {
                         link.classList.add('active');
+                        body[link.dataset.button] = link.textContent;
                         namesCard[index].classList.add('active');
                         statusBars[index].classList.add('active');
+                        if (body.texture !== '' && body.manufacturer !== '' && body.room !== '' && body.lighting !== '' && body.lighting !== 0) {
+                           
+                            if (document.querySelector('.calc__form-input button').classList.contains('disabled')) {
+                                document.querySelector('.calc__form-input button').classList.remove('disabled');
+                            }
+                        } else {
+                            document.querySelector('.calc__form-input button').classList.add('disabled');
+                        }
                     } else {
                         if (link.classList.contains('active')) {
                             link.classList.remove('active');
@@ -3290,15 +3375,31 @@ export const calc = () => {
             }
         })
     });
-
-    
     squareInputs.forEach((input, index) => {
         input.addEventListener('input', (e) => {
             squareValues[index] = e.target.value;
             if (squareValues[0] !== '' && squareValues[1] !== '') {
                 namesCard[2].classList.add('active');
                 statusBars[2].classList.add('active');
+                body.room = squareValues
+                if (body.texture !== '' && body.manufacturer !== '' && body.room !== '' && body.lighting !== '' && body.lighting !== 0) {
+                           
+                    if (document.querySelector('.calc__form-input button').classList.contains('disabled')) {
+                        document.querySelector('.calc__form-input button').classList.remove('disabled');
+                    }
+                } else {
+                    document.querySelector('.calc__form-input button').classList.add('disabled');
+                }
             } else {
+                body.room = ''
+                if (body.texture !== '' && body.manufacturer !== '' && body.room !== '' && body.lighting !== '' && body.lighting !== 0) {
+                           
+                    if (document.querySelector('.calc__form-input button').classList.contains('disabled')) {
+                        document.querySelector('.calc__form-input button').classList.remove('disabled');
+                    }
+                } else {
+                    document.querySelector('.calc__form-input button').classList.add('disabled');
+                }
                 if (namesCard[2].classList.contains('active')) {
                     namesCard[2].classList.remove('active');
                 }
@@ -3324,18 +3425,38 @@ export const calc = () => {
                                 input.value = counter;
                                 namesCard[3].classList.add('active');
                                 statusBars[3].classList.add('active');
+                                body.lighting = counter
+                                if (body.texture !== '' && body.manufacturer !== '' && body.room !== '' && body.lighting !== '' && body.lighting !== 0) {
+                           
+                                    if (document.querySelector('.calc__form-input button').classList.contains('disabled')) {
+                                        document.querySelector('.calc__form-input button').classList.remove('disabled');
+                                    }
+                                } else {
+                                    document.querySelector('.calc__form-input button').classList.add('disabled');
+                                }
                             }
                         } else {
                             counter++;
                             input.value = counter;
                             namesCard[3].classList.add('active');
                             statusBars[3].classList.add('active');
+                            body.lighting = counter
+                            if (body.texture !== '' && body.manufacturer !== '' && body.room !== '' && body.lighting !== '' && body.lighting !== 0) {
+                           
+                                if (document.querySelector('.calc__form-input button').classList.contains('disabled')) {
+                                    document.querySelector('.calc__form-input button').classList.remove('disabled');
+                                }
+                            } else {
+                                document.querySelector('.calc__form-input button').classList.add('disabled');
+                            }
                         }
                     }
                 })
             }
         })
     })
+
+
 }
 
 export const playVideo = () => {
@@ -3354,5 +3475,33 @@ export const playVideo = () => {
         playLink2.style.display = 'none';
         video2.src = 'https://www.youtube.com/embed/zv0zQCzd4bw?controls=0'
         video2.style.display = 'block';
+    })
+}
+
+export const scrollButtons = () => {
+    const scrollLinks = document.querySelectorAll('[scroll]');
+    scrollLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const blockId = e.target.getAttribute('href');
+            document.querySelector(blockId).scrollIntoView({
+                behavior: 'smooth',
+                block: 'start' 
+            });
+        })
+    })
+}
+
+export const openModal = () => {
+    const modalLinks = document.querySelectorAll('[toggle]');
+    modalLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (e.target.closest('a')) {
+                const btn = e.target.closest('a');
+                const blockId = btn.getAttribute('toggle');
+                document.querySelector(blockId).classList.toggle('active');
+            }
+        })
     })
 }
