@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 var swiper = new Swiper(".about-thumb", {
     modules: [FreeMode],
-    loop: true,
+    // loop: true,
     spaceBetween: 10,
     slidesPerView: 4,
     // freeMode: true,
@@ -64,7 +64,7 @@ var swiper = new Swiper(".about-thumb", {
 });
 var swiper2 = new Swiper(".about-swiper", {
     modules: [Navigation, Thumbs],
-    loop: true,
+    // loop: true,
     spaceBetween: 10,
     navigation: {
       nextEl: ".swiper-button-next",
@@ -140,7 +140,7 @@ var swiper4 = new Swiper(".swiper-certificates", {
 });
 var swiper5 = new Swiper(".modal-swiper", {
     modules: [Navigation],
-    loop: true,
+    // loop: true,
     spaceBetween: 0,
     slidesPerView: 1,
     navigation: {
@@ -148,3 +148,17 @@ var swiper5 = new Swiper(".modal-swiper", {
       prevEl: ".slider__prev",
     },
 });
+
+const sliderLinks = document.querySelectorAll('[slider]');
+sliderLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (e.target.closest('a')) {
+            const btn = e.target.closest('a');
+            const index = btn.dataset.id;
+            swiper5.slideTo(index)
+            const blockId = btn.getAttribute('slider');
+            document.querySelector(blockId).classList.toggle('active');
+        }
+    })
+})

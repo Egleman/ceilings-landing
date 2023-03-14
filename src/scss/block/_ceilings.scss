@@ -39,6 +39,8 @@
                     color: #64748B;
                     font-size: 16px;
                     line-height: 20px;
+                    border: 1px solid #F1F5F9;
+                    border-radius: 12px;
                     &:hover {
                         color: #475569;
                     }
@@ -48,7 +50,7 @@
                 a {
                     background: #FFFFFF;
                     border: 1px solid #A3A5EB;
-                    border-radius: 12px;
+                    // border-radius: 12px;
                     color: #0F172A;
                 }
             }
@@ -204,18 +206,18 @@
             p {
                 font-size: 16px;
                 line-height: 24px;
-                display: flex;
-                align-items: center;
-                text-align: center;
+                // display: flex;
+                // align-items: center;
+                // text-align: center;
                 letter-spacing: -0.02em;
                 color: #344256;
                 span {
                     font-weight: 600;
                     font-size: 16px;
                     line-height: 24px;
-                    display: flex;
-                    align-items: center;
-                    text-align: center;
+                    // display: flex;
+                    // align-items: center;
+                    // text-align: center;
                     letter-spacing: -0.02em;
                     color: #344256;
                 }

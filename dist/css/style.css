@@ -1250,6 +1250,8 @@ button {
   color: #64748B;
   font-size: 16px;
   line-height: 20px;
+  border: 1px solid #F1F5F9;
+  border-radius: 12px;
 }
 
 .ceilings__tabs ul li a:hover {
@@ -1259,7 +1261,6 @@ button {
 .ceilings__tabs ul .active a {
   background: #FFFFFF;
   border: 1px solid #A3A5EB;
-  border-radius: 12px;
   color: #0F172A;
 }
 
@@ -1437,9 +1438,6 @@ button {
 .ceilings__card-price p {
   font-size: 16px;
   line-height: 24px;
-  display: flex;
-  align-items: center;
-  text-align: center;
   letter-spacing: -0.02em;
   color: #344256;
 }
@@ -1448,9 +1446,6 @@ button {
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
-  display: flex;
-  align-items: center;
-  text-align: center;
   letter-spacing: -0.02em;
   color: #344256;
 }
@@ -1864,6 +1859,11 @@ button {
   text-align: center;
 }
 
+.calc__card-inputs .background-white div input::-webkit-outer-spin-button,
+.calc__card-inputs .background-white div input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
 .calc__card-inputs .background-white div span {
   color: #94A3B8;
 }
@@ -1935,6 +1935,11 @@ button {
 
 .calc__card-count div input::placeholder {
   text-align: center;
+}
+
+.calc__card-count div input::-webkit-outer-spin-button,
+.calc__card-count div input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
 }
 
 .calc__form {

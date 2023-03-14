@@ -3337,14 +3337,29 @@ export const calc = () => {
     const buttonsPanel = document.querySelectorAll('.calc__card-buttons');
     const squareInputs = document.querySelectorAll('.calc__card-inputs input');
     const counters = document.querySelectorAll('.calc__card-count');
+    const calcInput = document.querySelector('.calc__form input');
     const squareValues = ['', ''];
+    const countersValue = [0, 0];
 
     const body = {
         texture: '',
         manufacturer: '',
         room: '',
-        lighting: ''
+        lighting: '',
+        phone: ''
     }
+
+    calcInput.addEventListener('input', () => {
+        body.phone = calcInput.value;
+        if (body.texture !== '' && body.manufacturer !== '' && body.room !== '' && body.lighting !== '' && body.lighting !== 0 && body.phone.length === 17) {
+                           
+            if (document.querySelector('.calc__form-input button').classList.contains('disabled')) {
+                document.querySelector('.calc__form-input button').classList.remove('disabled');
+            }
+        } else {
+            document.querySelector('.calc__form-input button').classList.add('disabled');
+        }
+    })
 
     buttonsPanel.forEach((panel, index) => {
         const links = panel.querySelectorAll('a');
@@ -3358,7 +3373,7 @@ export const calc = () => {
                         body[link.dataset.button] = link.textContent;
                         namesCard[index].classList.add('active');
                         statusBars[index].classList.add('active');
-                        if (body.texture !== '' && body.manufacturer !== '' && body.room !== '' && body.lighting !== '' && body.lighting !== 0) {
+                        if (body.texture !== '' && body.manufacturer !== '' && body.room !== '' && body.lighting !== '' && body.lighting !== 0 && body.phone !== '') {
                            
                             if (document.querySelector('.calc__form-input button').classList.contains('disabled')) {
                                 document.querySelector('.calc__form-input button').classList.remove('disabled');
@@ -3382,7 +3397,7 @@ export const calc = () => {
                 namesCard[2].classList.add('active');
                 statusBars[2].classList.add('active');
                 body.room = squareValues
-                if (body.texture !== '' && body.manufacturer !== '' && body.room !== '' && body.lighting !== '' && body.lighting !== 0) {
+                if (body.texture !== '' && body.manufacturer !== '' && body.room !== '' && body.lighting !== '' && body.lighting !== 0 && body.phone.length === 17) {
                            
                     if (document.querySelector('.calc__form-input button').classList.contains('disabled')) {
                         document.querySelector('.calc__form-input button').classList.remove('disabled');
@@ -3392,7 +3407,7 @@ export const calc = () => {
                 }
             } else {
                 body.room = ''
-                if (body.texture !== '' && body.manufacturer !== '' && body.room !== '' && body.lighting !== '' && body.lighting !== 0) {
+                if (body.texture !== '' && body.manufacturer !== '' && body.room !== '' && body.lighting !== '' && body.lighting !== 0 && body.phone.length === 17) {
                            
                     if (document.querySelector('.calc__form-input button').classList.contains('disabled')) {
                         document.querySelector('.calc__form-input button').classList.remove('disabled');
@@ -3409,10 +3424,10 @@ export const calc = () => {
             }
         })
     });
-    counters.forEach(panel => {
+    counters.forEach((panel, index) => {
         const input = panel.querySelector('input');
         const links = panel.querySelectorAll('a');
-        let counter = 0;
+        // let counter = 0;
         panel.addEventListener('click', (e) => {
             e.preventDefault();
             if (e.target.closest('a')) {
@@ -3420,13 +3435,12 @@ export const calc = () => {
                 links.forEach(link => {
                     if (link === btn) {
                         if (link.dataset.count === 'minus') {
-                            if (counter !== 0) {
-                                counter--;
-                                input.value = counter;
-                                namesCard[3].classList.add('active');
-                                statusBars[3].classList.add('active');
-                                body.lighting = counter
-                                if (body.texture !== '' && body.manufacturer !== '' && body.room !== '' && body.lighting !== '' && body.lighting !== 0) {
+                            if (countersValue[index] !== 0) {
+                                countersValue[index]--;
+                                input.value = countersValue[index];
+                                
+                                body.lighting = countersValue[index]
+                                if (body.texture !== '' && body.manufacturer !== '' && body.room !== '' && body.lighting !== '' && body.lighting !== 0 && body.phone.length === 17) {
                            
                                     if (document.querySelector('.calc__form-input button').classList.contains('disabled')) {
                                         document.querySelector('.calc__form-input button').classList.remove('disabled');
@@ -3436,12 +3450,12 @@ export const calc = () => {
                                 }
                             }
                         } else {
-                            counter++;
-                            input.value = counter;
-                            namesCard[3].classList.add('active');
-                            statusBars[3].classList.add('active');
-                            body.lighting = counter
-                            if (body.texture !== '' && body.manufacturer !== '' && body.room !== '' && body.lighting !== '' && body.lighting !== 0) {
+                            countersValue[index]++;
+                            input.value = countersValue[index];
+                            // namesCard[3].classList.add('active');
+                            // statusBars[3].classList.add('active');
+                            body.lighting = countersValue[index]
+                            if (body.texture !== '' && body.manufacturer !== '' && body.room !== '' && body.lighting !== '' && body.lighting !== 0 && body.phone.length === 17) {
                            
                                 if (document.querySelector('.calc__form-input button').classList.contains('disabled')) {
                                     document.querySelector('.calc__form-input button').classList.remove('disabled');
@@ -3453,6 +3467,18 @@ export const calc = () => {
                     }
                 })
             }
+            if (countersValue[0] !== 0 || countersValue[1] !== 0) {
+                namesCard[3].classList.add('active');
+                statusBars[3].classList.add('active');
+            } else {
+                if (namesCard[3].classList.contains('active')) {
+                    namesCard[3].classList.remove('active');
+                }
+                if (statusBars[3].classList.contains('active')) {
+                    statusBars[3].classList.remove('active');
+                }
+            }
+            
         })
     })
 
