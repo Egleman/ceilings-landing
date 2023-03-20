@@ -1,4 +1,6 @@
 .header {
+    position: sticky;
+    top: 0;
     &__top {
         background: #F1F5F9;
         &-wrapper {
