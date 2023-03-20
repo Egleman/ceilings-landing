@@ -4,7 +4,7 @@
 
     @@include('html/header.html', {})
     <main>
-        <div id="header"></div>
+        <div class="anchor" id="header"></div>
         <section class="banner">
             <div class="container">
                 <div class="banner__wrapper">
@@ -19,7 +19,7 @@
                         <div class="slider-styled" id="slider-round"></div>
                         <div class="banner__form-price">
                             <div>Стоимость потолка</div>
-                            <p>35 000 <span>₽</span></p>
+                            <p>от <span>35 000</span> ₽</p>
                         </div>
                         <div class="banner__form-input">
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -126,7 +126,8 @@
                 </div>
             </div>
         </section>
-        <section class="ceilings" id="ceilings">
+        <section class="ceilings">
+            <div class="anchor" id="ceilings"></div>
             <div class="container">
                 <div class="ceilings__wrapper">
                     <div class="ceilings__title">Наши натяжные потолки</div>
@@ -2037,7 +2038,7 @@
                 </div>
             </div>
         </section>
-        <section class="callback" id="callback">
+        <section class="callback">
             <div class="container">
                 <div class="callback__wrapper">
                     <img src="./img/spider-man.png" alt="phone-man">
@@ -2410,7 +2411,8 @@
                 </div>
             </div>
         </section>
-        <section class="calc" id="calc">
+        <section class="calc">
+            <div class="anchor" id="calc"></div>
             <div class="container">
                 <div class="calc__wrapper">
                     <div class="calc__title">Рассчитать стоимость натяжных потолков</div>
@@ -2425,31 +2427,31 @@
                                 <div class="calc__card-statusbar"></div>
                                 <ul class="calc__card-buttons">
                                     <li>
-                                        <a href="#" data-button="texture">
+                                        <a href="#" data-button="texture" data-price="489">
                                             Матовые
                                             С монтажом от 489 руб/м2 
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" data-button="texture">
+                                        <a href="#" data-button="texture" data-price="489">
                                             Глянцевые
                                             С монтажом от 489 руб/м2 
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" data-button="texture">
+                                        <a href="#" data-button="texture" data-price="489">
                                             Сатиновые
                                             С монтажом от 489 руб/м2                                             
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" data-button="texture">
+                                        <a href="#" data-button="texture" data-price="610">
                                             Цветные
                                             С монтажом от 610 руб/м2                                             
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" data-button="texture">
+                                        <a href="#" data-button="texture" data-price="1190">
                                             Тканевые
                                             С монтажом от 1190 руб/м2                                                                                         
                                         </a>
@@ -2657,7 +2659,8 @@
                 </div>
             </div>
         </section>
-        <section class="prices" id="prices">
+        <section class="prices">
+            <div class="anchor" id="prices"></div>
             <div class="container">
                 <div class="prices__suptitle">
                     <svg width="13" height="12" viewBox="0 0 13 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2810,7 +2813,8 @@
                 </div>
             </div>
         </section>
-        <section class="reviews" id="reviews">
+        <section class="reviews">
+            <div class="anchor" id="reviews"></div>
             <div class="container">
                 <div class="reviews__title">Отзывы наших клиентов</div>
                 <div class="reviews__subtitle">
@@ -3327,6 +3331,7 @@
             </div>
         </section>
         <div class="contacts">
+            <div class="anchor" id="contacts"></div>
             <div class="container">
                 <div class="contacts__title">Наши контакты</div>
                 <ul class="contacts__list">
@@ -3432,7 +3437,7 @@
                         <li><a href="#calc" scroll>Калькулятор</a></li>
                         <li><a href="#prices" scroll>Прайс-лист</a></li>
                         <li><a href="#reviews" scroll>Отзывы</a></li>
-                        <li><a href="#callback" scroll>Контакты</a></li>
+                        <li><a href="#contacts" scroll>Контакты</a></li>
                     </ul>
                 </nav>
             </div>

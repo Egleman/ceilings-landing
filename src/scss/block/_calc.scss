@@ -1,5 +1,6 @@
 .calc {
     padding: 37px 0px;
+    position: relative;
     &__title {
         font-weight: 700;
         font-size: 32px;
@@ -459,6 +460,13 @@
                 .background-white {
                     height: 130px;
                     flex-direction: column;
+                }
+            }
+            &-buttons {
+                li {
+                    a {
+                        height: 65px;
+                    }
                 }
             }
         }

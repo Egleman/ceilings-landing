@@ -180,7 +180,6 @@ body {
   font-weight: 400;
   font-style: normal;
   position: relative;
-  overflow-x: hidden;
 }
 
 ol,
@@ -191,6 +190,13 @@ ul {
 label,
 button {
   cursor: pointer;
+}
+
+.anchor {
+  position: absolute;
+  left: -1px;
+  height: 136px;
+  bottom: 100%;
 }
 
 #slider-round {
@@ -727,6 +733,13 @@ button {
   margin-top: 12px;
 }
 
+.header {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 10;
+}
+
 .header__top {
   background: #F1F5F9;
 }
@@ -1094,16 +1107,17 @@ button {
 }
 
 .banner__form-price p {
+  font-size: 20px;
+  line-height: 28px;
+  color: #fff;
+}
+
+.banner__form-price p span {
   font-weight: 700;
   font-size: 32px;
   line-height: 40px;
   letter-spacing: -0.02em;
   color: #FFFFFF;
-}
-
-.banner__form-price p span {
-  font-size: 20px;
-  line-height: 28px;
 }
 
 .banner__form-input {
@@ -1362,6 +1376,7 @@ button {
 
 .ceilings {
   padding: 37px 0px;
+  position: relative;
 }
 
 .ceilings__title {
@@ -1853,6 +1868,7 @@ button {
 
 .calc {
   padding: 37px 0px;
+  position: relative;
 }
 
 .calc__title {
@@ -2333,6 +2349,7 @@ button {
 
 .prices {
   padding: 37px 0px;
+  position: relative;
 }
 
 .prices__suptitle {
@@ -2574,6 +2591,7 @@ button {
 
 .reviews {
   padding: 37px 0px;
+  position: relative;
 }
 
 .reviews__title {
@@ -3122,6 +3140,7 @@ button {
 
 .contacts {
   padding: 37px 0px;
+  position: relative;
 }
 
 .contacts__title {
@@ -4494,6 +4513,10 @@ button {
 }
 
 @media (max-width: 606px) {
+  .anchor {
+    height: 171px;
+  }
+
   .header__top {
     background: #fff;
   }
@@ -4635,6 +4658,10 @@ button {
   .calc__card-inputs .background-white {
     height: 130px;
     flex-direction: column;
+  }
+
+  .calc__card-buttons li a {
+    height: 65px;
   }
 
   .calc__form-price br {
@@ -4808,7 +4835,17 @@ button {
   }
 
   .banner__form-price p {
+    font-size: 16px;
+    line-height: 28px;
+    color: #fff;
+  }
+
+  .banner__form-price p span {
+    font-weight: 700;
     font-size: 20px;
+    line-height: 40px;
+    letter-spacing: -0.02em;
+    color: #FFFFFF;
   }
 
   .about__bookmark {

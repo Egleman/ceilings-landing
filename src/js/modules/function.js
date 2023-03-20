@@ -3242,7 +3242,7 @@ export const openHeaderCallback = () => {
 export const rangeSlider = () => {
     const slider = document.getElementById('slider-round');
     const numb = document.querySelector('.banner__form-label > p:last-of-type > span');
-    const price = document.querySelector('.banner__form-price > p');
+    const price = document.querySelector('.banner__form-price > p > span');
     // console.log(numb)
     noUiSlider.create(slider, { 
         start: 25,
@@ -3343,7 +3343,7 @@ export const calc = () => {
     const countersInput = document.querySelectorAll('input[data-input="count"]');
     const squareValues = ['', ''];
     const countersValue = [0, 0];
-
+    let price = 0;
     const body = {
         texture: '',
         manufacturer: '',
@@ -3351,6 +3351,18 @@ export const calc = () => {
         lighting: '',
         phone: ''
     }
+
+    const summPrice = () => {
+        let summ = 0;
+        if (squareValues[0] !== '' && squareValues[1] !== '' && price !== 0) {
+            summ = +squareValues[0] * +squareValues[1] * price;
+            
+        }
+        if (summ !== 0) {
+            document.querySelector('.calc__form-price .number').textContent = summ
+        }
+    }
+
     countersInput.forEach(inp => {
         inp.addEventListener('input', () => {
             inp.value = inp.value.replace(/[^\d.]/g, '');
@@ -3378,6 +3390,9 @@ export const calc = () => {
                     if (link === btn) {
                         link.classList.add('active');
                         body[link.dataset.button] = link.textContent;
+                        if (link.dataset.price !== undefined) {
+                            price = +link.dataset.price;
+                        }
                         namesCard[index].classList.add('active');
                         statusBars[index].classList.add('active');
                         if (body.texture !== '' && body.manufacturer !== '' && body.room !== '' && body.lighting !== '' && body.lighting !== 0 && body.phone !== '') {
@@ -3387,10 +3402,12 @@ export const calc = () => {
                         } else {
                             document.querySelector('.calc__form-input button').classList.add('disabled');
                         }
+                        summPrice();
                     } else {
                         if (link.classList.contains('active')) {
                             link.classList.remove('active');
                         }
+                        summPrice()
                     }
                 })
             }
@@ -3428,7 +3445,9 @@ export const calc = () => {
                     statusBars[2].classList.remove('active');
                 }
             }
+            summPrice()
         })
+        
     });
     counters.forEach((panel, index) => {
         const input = panel.querySelector('input');
@@ -3513,10 +3532,14 @@ export const playVideo = () => {
 
 export const scrollButtons = () => {
     const scrollLinks = document.querySelectorAll('[scroll]');
+    const hiddenMenu = document.getElementById('hidden-menu');
     scrollLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            const blockId = e.target.getAttribute('href');
+            const blockId = link.getAttribute('href');
+            if (hiddenMenu.classList.contains('active')) {
+                hiddenMenu.classList.remove('active');
+            }
             document.querySelector(blockId).scrollIntoView({
                 behavior: 'smooth',
                 block: 'start' 

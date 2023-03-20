@@ -26,7 +26,7 @@ body {
     font-weight: 400;
     font-style: normal;
     position: relative;
-    overflow-x: hidden;
+    // overflow-x: hidden;
     // min-width: 320px;
 }
 ol, ul { 
@@ -37,6 +37,17 @@ label, button {
     cursor: pointer;
 }
 
+.anchor {
+    position: absolute;
+    left: -1px;
+    height: 136px;
+    bottom: 100%;
+}
+@media (max-width: 606px) {
+    .anchor {
+        height: 171px;
+    }
+}
 #slider-round {
     height: 8px;
 }
