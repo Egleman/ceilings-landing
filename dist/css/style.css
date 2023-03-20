@@ -223,6 +223,10 @@ button {
   display: none;
 }
 
+.error {
+  border: 1px solid #EF4444 !important;
+}
+
 .container {
   max-width: 1230px;
   padding: 0px 15px;
@@ -497,7 +501,6 @@ button {
   height: 480px;
   width: 100%;
   overflow: hidden;
-  border: 1px solid #E1E7EF;
   border-radius: 24px;
   box-sizing: border-box;
   position: relative;
@@ -577,9 +580,151 @@ button {
   display: flex;
 }
 
-.header {
-  position: sticky;
+.hidden-menu {
+  position: fixed;
   top: 0;
+  right: -300px;
+  bottom: 0;
+  width: 300px;
+  overflow: hidden;
+  background: #F1F5F9;
+  border-radius: 12px 0px 10px;
+  transition: 0.6s all;
+  display: none;
+  z-index: 101;
+}
+
+.hidden-menu__body {
+  padding: 52px 28px 12px 28px;
+  overflow-y: auto;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.hidden-menu__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  gap: 8px;
+  top: 13px;
+  left: 17px;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.03em;
+  color: #0F172A;
+}
+
+.hidden-menu__logo {
+  font-weight: 500;
+  font-size: 29.1719px;
+  line-height: 29px;
+  color: #0F172A;
+}
+
+.hidden-menu__logo span {
+  background: linear-gradient(90deg, #CDEAA1 61.35%, #04B7D6 112.7%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.hidden-menu__worktime {
+  margin: 12px 0px;
+  font-size: 16px;
+  line-height: 28px;
+  color: #344256;
+}
+
+.hidden-menu__navbar {
+  margin-bottom: 12px;
+}
+
+.hidden-menu__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hidden-menu__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F1F5F9;
+  border-radius: 12px;
+  padding: 10px 15px;
+  transition: 0.3s all;
+  font-size: 16px;
+  line-height: 20px;
+  color: #0F172A;
+  max-width: -moz-max-content;
+  max-width: max-content;
+  border: 1px solid #F1F5F9;
+}
+
+.hidden-menu__link:hover {
+  background: #E1E7EF;
+  border: 1px solid #65758B;
+  border-radius: 12px;
+}
+
+.hidden-menu__label {
+  font-size: 20px;
+  line-height: 120%;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.hidden-menu__callback {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.hidden-menu__callback-link {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.03em;
+  color: rgba(15, 23, 42, 0.7);
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+}
+
+.hidden-menu__callback-link:hover {
+  background: #F1F5F9;
+}
+
+.hidden-menu__callback-link:active {
+  background: #E1E7EF;
+}
+
+.hidden-menu__phone {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: -0.02em;
+  color: #344256;
+  margin-bottom: 12px;
+}
+
+.hidden-menu__address {
+  font-family: "Manrope", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 140%;
+  color: #334155;
+  margin-top: 12px;
 }
 
 .header__top {
@@ -847,6 +992,10 @@ button {
   color: #0F172A;
 }
 
+.header__hidden-menu {
+  display: none;
+}
+
 .header .header__smallnavbar.visible button {
   border-radius: 12px 12px 0px 0px;
 }
@@ -902,7 +1051,7 @@ button {
 .banner__form {
   max-width: 500px;
   width: 100%;
-  background: #73D4C9;
+  background: #0D6E63;
   border: 1px solid #D1FAE5;
   border-radius: 32px;
   padding: 30px;
@@ -958,18 +1107,23 @@ button {
 }
 
 .banner__form-input {
-  position: relative;
   height: 55px;
   border-radius: 16px;
   background: #fff;
   overflow: hidden;
+  border: 1px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 4px 0px 12px;
 }
 
 .banner__form-input svg {
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
-  left: 12px;
+  margin-right: 10px;
+  display: flex;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
 }
 
 .banner__form-input input {
@@ -984,8 +1138,8 @@ button {
   border: none;
   box-sizing: border-box;
   width: 100%;
-  padding-left: 44px;
-  padding-right: 130px;
+  border-radius: 16px;
+  border: 1px solid #fff;
 }
 
 .banner__form-input input::-moz-placeholder {
@@ -1009,10 +1163,6 @@ button {
 }
 
 .banner__form-input button {
-  position: absolute;
-  top: 50%;
-  right: 4px;
-  transform: translate(0, -49%);
   background: #15B8A5;
   border-radius: 12px;
   padding: 0;
@@ -1777,11 +1927,12 @@ button {
 }
 
 .calc__card-buttons li a {
-  font-size: 16px;
+  font-size: 13px;
+  text-align: center;
   line-height: 20px;
   letter-spacing: -0.03em;
   color: #475569;
-  padding: 15px 0px;
+  height: 52px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1980,7 +2131,6 @@ button {
 }
 
 .calc__form-input {
-  position: relative;
   height: 55px;
   border-radius: 16px;
   background: #fff;
@@ -1988,13 +2138,18 @@ button {
   border: 1px solid #E1E7EF;
   max-width: 600px;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 4px 0px 12px;
 }
 
 .calc__form-input .phone {
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
-  left: 12px;
+  display: flex;
+  margin-right: 10px;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
 }
 
 .calc__form-input input {
@@ -2009,8 +2164,6 @@ button {
   border: none;
   box-sizing: border-box;
   width: 100%;
-  padding-left: 44px;
-  padding-right: 130px;
 }
 
 .calc__form-input input::-moz-placeholder {
@@ -2034,10 +2187,6 @@ button {
 }
 
 .calc__form-input button {
-  position: absolute;
-  top: 50%;
-  right: 4px;
-  transform: translate(0, -49%);
   background: #15B8A5;
   border-radius: 12px;
   padding: 0;
@@ -2464,6 +2613,8 @@ button {
   padding: 15px;
   border-radius: 24px;
   background: #F8FAFC;
+  display: flex;
+  flex-direction: column;
 }
 
 .reviews__card-image {
@@ -2545,6 +2696,7 @@ button {
   line-height: 24px;
   letter-spacing: -0.02em;
   color: #344256;
+  margin-top: auto;
 }
 
 .reviews__card-price span {
@@ -2835,7 +2987,6 @@ button {
 }
 
 .callback__form {
-  position: relative;
   height: 55px;
   border-radius: 16px;
   background: #fff;
@@ -2843,13 +2994,23 @@ button {
   max-width: 445px;
   width: 100%;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 12px;
+  padding-right: 4px;
+  border: 1px solid transparent;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
 }
 
 .callback__form svg {
-  position: absolute;
-  top: 50%;
-  transform: translate(0, -50%);
-  left: 12px;
+  margin-right: 10px;
+  display: flex;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
 }
 
 .callback__form input {
@@ -2864,8 +3025,8 @@ button {
   border: none;
   box-sizing: border-box;
   width: 100%;
-  padding-left: 44px;
-  padding-right: 130px;
+  border-radius: 16px;
+  border: 1px solid #fff;
 }
 
 .callback__form input::-moz-placeholder {
@@ -2889,10 +3050,6 @@ button {
 }
 
 .callback__form button {
-  position: absolute;
-  top: 50%;
-  right: 4px;
-  transform: translate(0, -51%);
   background: #15B8A5;
   border-radius: 12px;
   padding: 0;
@@ -2900,7 +3057,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 120px;
+  width: 189px;
   border: none;
   transition: 0.3s all;
 }
@@ -3402,9 +3559,16 @@ button {
   scroll-snap-align: center center;
 }
 
+@media (max-width: 2500px) {
+  .banner__image {
+    left: 55%;
+  }
+}
+
 @media (max-width: 1380px) {
   .banner__image {
     right: -100px;
+    left: auto;
   }
 }
 
@@ -3776,6 +3940,11 @@ button {
 
   .calc__card-countwr {
     gap: 90px;
+  }
+
+  .calc__card-buttons li a {
+    padding: 0px 10px;
+    box-sizing: border-box;
   }
 
   .installation__video a svg {
@@ -4327,7 +4496,6 @@ button {
 @media (max-width: 606px) {
   .header__top {
     background: #fff;
-    padding-top: 50px;
   }
 
   .header__top-wrapper {
@@ -4544,7 +4712,8 @@ button {
   }
 
   .callback__form button {
-    width: 65px;
+    min-width: 65px;
+    max-width: 65px;
   }
 
   .callback__form button p {
@@ -4555,6 +4724,7 @@ button {
     display: block;
     position: static;
     transform: translate(0, 0);
+    margin-right: 0;
   }
 
   .want__wrapper {
@@ -4590,26 +4760,55 @@ button {
 }
 
 @media (max-width: 375px) {
+  .hidden-menu.active {
+    display: block;
+  }
+
+  .hidden-menu.visible {
+    right: 0;
+  }
+
+  .header__smallnavbar {
+    display: none;
+  }
+
+  .header__hidden-menu {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: -0.03em;
+    color: #48566A;
+    width: 105px;
+    height: 40px;
+    background: #F1F5F9;
+    border-radius: 12px;
+  }
+
   .banner__title {
     margin-bottom: 265px;
     font-size: 30px;
   }
 
   .banner__form-input button {
-    width: 85px;
-  }
-
-  .banner__form-input input {
-    padding-right: 80px;
-    padding-left: 30px;
+    min-width: 80px;
+    font-size: 14px;
   }
 
   .banner__form-input svg {
     left: 5px;
   }
 
+  .banner__form-price div {
+    padding-bottom: 9px;
+    font-size: 14px;
+  }
+
   .banner__form-price p {
-    font-size: 25px;
+    font-size: 20px;
   }
 
   .about__bookmark {

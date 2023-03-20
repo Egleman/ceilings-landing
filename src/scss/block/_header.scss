@@ -1,6 +1,6 @@
 .header {
-    position: sticky;
-    top: 0;
+    // position: sticky;
+    // top: 0;
     &__top {
         background: #F1F5F9;
         &-wrapper {
@@ -247,6 +247,9 @@
             }
         }
     }
+    &__hidden-menu {
+        display: none;
+    }
     .header__smallnavbar.visible {
         button {
             // width: 290px;
@@ -330,7 +333,7 @@
     .header {
         &__top {
             background: #fff;
-            padding-top: 50px;
+            // padding-top: 50px;
             &-wrapper {
                 height: 34px;
                 background: #F1F5F9;
@@ -370,6 +373,28 @@
         }
         &__middle {
             display: block;
+        }
+    }
+}
+@media (max-width: 375px) {
+    .header {
+        &__smallnavbar {
+            display: none;
+        }
+        &__hidden-menu {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 16px;
+            line-height: 20px;
+            letter-spacing: -0.03em;
+            color: #48566A;
+            width: 105px;
+            height: 40px;
+            background: #F1F5F9;
+            border-radius: 12px;
         }
     }
 }

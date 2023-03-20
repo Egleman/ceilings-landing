@@ -24,7 +24,7 @@
     &__form {
         max-width: 500px;
         width: 100%;
-        background: #73D4C9;
+        background: #0D6E63;
         border: 1px solid #D1FAE5;
         border-radius: 32px;
         padding: 30px;
@@ -73,16 +73,26 @@
             }
         }
         &-input {
-            position: relative;
+            // position: relative;
             height: 55px;
             border-radius: 16px;
             background: #fff;
             overflow: hidden;
+            border: 1px solid transparent;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0px 4px 0px 12px;
             svg {
-                position: absolute;
-                top: 50%;
-                transform: translate(0, -50%);
-                left: 12px;
+                // position: absolute;
+                // top: 50%;
+                // transform: translate(0, -50%);
+                // left: 12px;
+                margin-right: 10px;
+                display: flex;
+                width: 20px;
+                height: 20px;
+                flex-shrink: 0;
             }
             input {
                 font-family: 'Inter', sans-serif;
@@ -96,8 +106,10 @@
                 border: none;
                 box-sizing: border-box;
                 width: 100%;
-                padding-left: 44px;
-                padding-right: 130px;
+                // padding-left: 44px;
+                // padding-right: 130px;
+                border-radius: 16px;
+                border: 1px solid #fff;
                 &::placeholder {
                     font-family: 'Inter', sans-serif;
                     font-style: normal;
@@ -109,10 +121,10 @@
                 }
             }
             button {
-                position: absolute;
-                top: 50%;
-                right: 4px;
-                transform: translate(0, -49%);
+                // position: absolute;
+                // top: 50%;
+                // right: 4px;
+                // transform: translate(0, -49%);
                 background: #15B8A5;
                 border-radius: 12px;
                 padding: 0;
@@ -137,10 +149,18 @@
         }
     }
 }
+@media (max-width: 2500px) {
+    .banner {
+        &__image {
+            left: 55%;
+        }
+    }
+}
 @media (max-width: 1380px) {
     .banner {
         &__image {
             right: -100px;
+            left: auto;
         }
     }
 }
@@ -240,19 +260,25 @@
         &__form {
             &-input {
                 button {
-                    width: 85px;
+                    min-width: 80px;
+                    font-size: 14px;
                 }
                 input {
-                    padding-right: 80px;
-                    padding-left: 30px;
+                    // padding-right: 80px;
+                    // padding-left: 30px;
                 }
                 svg {
                     left: 5px;
                 }
             }
             &-price {
+                div {
+                    padding-bottom: 9px;
+                    font-size: 14px;
+                }
                 p {
-                    font-size: 25px;
+                    font-size: 20px;
+
                 }
             }
         }

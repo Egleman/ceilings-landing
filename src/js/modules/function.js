@@ -75,10 +75,10 @@ export const accordion = () => {
               return;
             }
             if (!this._config.alwaysOpen) {
-              const elOpenItem = this._el.querySelector('.accordion__item_show');
-              if (elOpenItem) {
-                elOpenItem !== elHeader.parentElement ? this.toggle(elOpenItem) : null;
-              }
+            //   const elOpenItem = this._el.querySelector('.accordion__item_show');
+            //   if (elOpenItem) {
+            //     elOpenItem !== elHeader.parentElement ? this.toggle(elOpenItem) : null;
+            //   }
             }
             this.toggle(elHeader.parentElement);
           });
@@ -3242,6 +3242,7 @@ export const openHeaderCallback = () => {
 export const rangeSlider = () => {
     const slider = document.getElementById('slider-round');
     const numb = document.querySelector('.banner__form-label > p:last-of-type > span');
+    const price = document.querySelector('.banner__form-price > p');
     // console.log(numb)
     noUiSlider.create(slider, { 
         start: 25,
@@ -3254,6 +3255,7 @@ export const rangeSlider = () => {
     });
     slider.noUiSlider.on('update', function (values, handle) {
         numb.textContent = Math.round(values[handle]);
+        price.textContent = Math.round(values[handle]) * 450;
     });
 }
 
@@ -3338,6 +3340,7 @@ export const calc = () => {
     const squareInputs = document.querySelectorAll('.calc__card-inputs input');
     const counters = document.querySelectorAll('.calc__card-count');
     const calcInput = document.querySelector('.calc__form input');
+    const countersInput = document.querySelectorAll('input[data-input="count"]');
     const squareValues = ['', ''];
     const countersValue = [0, 0];
 
@@ -3348,7 +3351,11 @@ export const calc = () => {
         lighting: '',
         phone: ''
     }
-
+    countersInput.forEach(inp => {
+        inp.addEventListener('input', () => {
+            inp.value = inp.value.replace(/[^\d.]/g, '');
+        })
+    })
     calcInput.addEventListener('input', () => {
         body.phone = calcInput.value;
         if (body.texture !== '' && body.manufacturer !== '' && body.room !== '' && body.lighting !== '' && body.lighting !== 0 && body.phone.length === 17) {
@@ -3374,7 +3381,6 @@ export const calc = () => {
                         namesCard[index].classList.add('active');
                         statusBars[index].classList.add('active');
                         if (body.texture !== '' && body.manufacturer !== '' && body.room !== '' && body.lighting !== '' && body.lighting !== 0 && body.phone !== '') {
-                           
                             if (document.querySelector('.calc__form-input button').classList.contains('disabled')) {
                                 document.querySelector('.calc__form-input button').classList.remove('disabled');
                             }
@@ -3429,6 +3435,7 @@ export const calc = () => {
         const links = panel.querySelectorAll('a');
         // let counter = 0;
         panel.addEventListener('click', (e) => {
+            console.log(body)
             e.preventDefault();
             if (e.target.closest('a')) {
                 const btn = e.target.closest('a');
@@ -3527,6 +3534,242 @@ export const openModal = () => {
                 const btn = e.target.closest('a');
                 const blockId = btn.getAttribute('toggle');
                 document.querySelector(blockId).classList.toggle('active');
+            }
+        })
+    })
+}
+export const openHiddenMenu = () => {
+    const menuOpenBtn = document.querySelector('.header__hidden-menu');
+    const menuCloseBtn = document.querySelector('.hidden-menu__close');
+    const hiddenMenu = document.getElementById('hidden-menu');
+
+    menuOpenBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        hiddenMenu.classList.add('active');
+        animate({
+            duration: 300,
+            timing(timeFraction) {
+              return timeFraction;
+            },
+            draw(progress) {
+                if (progress === 1) {
+                    hiddenMenu.classList.add('visible')
+                }
+            }
+        });
+    })
+    menuCloseBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (hiddenMenu.classList.contains('visible')) {
+            hiddenMenu.classList.remove('visible')
+        }
+        animate({
+            duration: 600,
+            timing(timeFraction) {
+              return timeFraction;
+            },
+            draw(progress) {
+                // hiddenMenu.style.opacity = -1 + progress;
+                if (progress === 1) {
+                    if (hiddenMenu.classList.contains('active')) {
+                        hiddenMenu.classList.remove('active');
+                    }
+                }
+            }
+        });
+    })
+}
+
+export const submitForms = () => {
+    const forms = document.querySelectorAll('form[data-form="banner"]');
+    const forms2 = document.querySelectorAll('form[data-form="main-callback"]');
+    const forms3 = document.querySelectorAll('form[data-form="calc"]');
+    const forms4 = document.querySelectorAll('.modal__form');
+    forms.forEach(form => {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let verify = [];
+            const inputs = form.querySelectorAll('input');
+            const wrap = form.querySelector('.banner__form-input');
+            inputs.forEach(input => {
+                if (input.value === '') {
+                    verify.push(0);
+                    wrap.classList.add('error');
+                    setTimeout(() => {
+                        if (wrap.classList.contains('error')) {
+                            wrap.classList.remove('error')
+                        }
+                    }, 5000)
+                } else {
+                    if (input.value.length - input.value.replace(/\d/gm, '').length === 11) {
+                        verify.push(1)
+                    } else {
+                        wrap.classList.add('error');
+                        verify.push(0)
+                        setTimeout(() => {
+                            if (wrap.classList.contains('error')) {
+                                wrap.classList.remove('error')
+                            }
+                        }, 5000)
+                    }
+                }
+                input.addEventListener('focus', () => {
+                    if (wrap.classList.contains('error')) {
+                        wrap.classList.remove('error')
+                    }
+                })
+            })
+            if (verify.every(elem => elem === 1)) {
+                document.getElementById('modal-thx').classList.add('active');
+                inputs.forEach(input => {
+                    input.value = '';
+                })
+                verify.length = 0;
+            } else {
+                verify.length = 0;
+            }
+        })
+    })
+    forms2.forEach(form => {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let verify = [];
+            const inputs = form.querySelectorAll('input');
+            inputs.forEach(input => {
+                if (input.value === '') {
+                    verify.push(0);
+                    form.classList.add('error');
+                    setTimeout(() => {
+                        if (form.classList.contains('error')) {
+                            form.classList.remove('error')
+                        }
+                    }, 5000)
+                } else {
+                    if (input.value.length - input.value.replace(/\d/gm, '').length === 11) {
+                        verify.push(1)
+                    } else {
+                        form.classList.add('error');
+                        verify.push(0)
+                        setTimeout(() => {
+                            if (form.classList.contains('error')) {
+                                form.classList.remove('error')
+                            }
+                        }, 5000)
+                    }
+                }
+                input.addEventListener('focus', () => {
+                    if (form.classList.contains('error')) {
+                        form.classList.remove('error')
+                    }
+                })
+            })
+            if (verify.every(elem => elem === 1)) {
+                document.getElementById('modal-thx').classList.add('active');
+                inputs.forEach(input => {
+                    input.value = '';
+                })
+                verify.length = 0;
+            } else {
+                verify.length = 0;
+            }
+        })
+    })
+    forms3.forEach(form => {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let verify = [];
+            const inputs = form.querySelectorAll('input');
+            const wrap = form.querySelector('.calc__form-input');
+            inputs.forEach(input => {
+                if (input.value === '') {
+                    verify.push(0);
+                    wrap.classList.add('error');
+                    setTimeout(() => {
+                        if (wrap.classList.contains('error')) {
+                            wrap.classList.remove('error')
+                        }
+                    }, 5000)
+                } else {
+                    if (input.value.length - input.value.replace(/\d/gm, '').length === 11) {
+                        verify.push(1)
+                    } else {
+                        wrap.classList.add('error');
+                        verify.push(0)
+                        setTimeout(() => {
+                            if (wrap.classList.contains('error')) {
+                                wrap.classList.remove('error')
+                            }
+                        }, 5000)
+                    }
+                }
+                input.addEventListener('focus', () => {
+                    if (wrap.classList.contains('error')) {
+                        wrap.classList.remove('error')
+                    }
+                })
+            })
+            if (verify.every(elem => elem === 1)) {
+                document.getElementById('modal-thx').classList.add('active');
+                inputs.forEach(input => {
+                    input.value = '';
+                })
+                verify.length = 0;
+            } else {
+                verify.length = 0;
+            }
+        })
+    })
+    forms4.forEach(form => {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let verify = [];
+            const inputs = form.querySelectorAll('input');
+            const wrapps = form.querySelectorAll('.modal__form-input');
+            inputs.forEach((input, index) => {
+                if (input.value === '') {
+                    verify.push(0);
+                    wrapps[index].classList.add('error');
+                    setTimeout(() => {
+                        if (wrapps[index].classList.contains('error')) {
+                            wrapps[index].classList.remove('error')
+                        }
+                    }, 5000)
+                } else {
+                    if (index === 0) {
+                        verify.push(1)
+                    } else {
+                        if (input.value.length - input.value.replace(/\d/gm, '').length === 11) {
+                            verify.push(1)
+                        } else {
+                            wrapps[index].classList.add('error');
+                            verify.push(0)
+                            setTimeout(() => {
+                                if (wrapps[index].classList.contains('error')) {
+                                    wrapps[index].classList.remove('error')
+                                }
+                            }, 5000)
+                        }
+                    }
+                }
+                input.addEventListener('focus', () => {
+                    if (wrapps[index].classList.contains('error')) {
+                        wrapps[index].classList.remove('error')
+                    }
+                })
+            })
+            if (verify.every(elem => elem === 1)) {
+                document.querySelectorAll('.overlay').forEach(modal => {
+                    if (modal.classList.contains('active')) {
+                        modal.classList.remove('active');
+                    }
+                })
+                document.getElementById('modal-thx').classList.add('active');
+                inputs.forEach(input => {
+                    input.value = '';
+                })
+                verify.length = 0;
+            } else {
+                verify.length = 0;
             }
         })
     })
